@@ -1,0 +1,5 @@
+mcp>=1.2
+pypdf>=4.0
+python-docx>=1.1
+beautifulsoup4>=4.12
+reportlab>=4.0   # kun for lag_eksempeldata.py
