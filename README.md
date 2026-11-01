@@ -6,6 +6,8 @@ saksdokumenter og i norsk lovverk, med kildehenvisning til fil og side i hvert s
 Prototypen er laget for å vise hvordan KI kan brukes i juridisk arbeid uten å gi slipp på
 det som betyr mest i en advokatvirksomhet: **taushetsplikt, etterprøvbarhet og tilgangskontroll**.
 
+Laget av Helena Gulliksen (master i rettsvitenskap, UiT) med hjelp av KI-verktøy.
+
 > Eksempel: «Hvilke av sakene våre har ansvarsbegrensning som ikke gjelder ved grov uaktsomhet?»
 > → Assistenten søker, leser de relevante sidene og svarer med henvisninger som
 > *[2026-021 Nordlys Data / Avtale om utvikling … .pdf, side 2]*.
@@ -39,11 +41,15 @@ det som betyr mest i en advokatvirksomhet: **taushetsplikt, etterprøvbarhet og 
 ## Kom i gang
 
 ```bash
+git clone https://github.com/helenagulliksen/mcp-lovdata.git
+cd mcp-lovdata
+
 python3 -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
-python lag_eksempeldata.py       # tre fiktive saker til testing
+# eksempeldokumenter/ inneholder tre fiktive saker til testing
+# (kan lages på nytt med: python lag_eksempeldata.py)
 python indeks.py eksempeldokumenter
 python lovdata_sync.py --bare-lover   # valgfritt: henter lovene fra Lovdata (åpne data, NLOD 2.0)
 ```
@@ -57,11 +63,11 @@ python lovdata_sync.py --bare-lover   # valgfritt: henter lovene fra Lovdata (å
 {
   "mcpServers": {
     "juss-sok": {
-      "command": "/sti/til/juss-sok/.venv/bin/python",
-      "args": ["/sti/til/juss-sok/server.py"],
+      "command": "/sti/til/mcp-lovdata/.venv/bin/python",
+      "args": ["/sti/til/mcp-lovdata/server.py"],
       "env": {
-        "JUSS_DOKUMENTMAPPE": "/sti/til/juss-sok/eksempeldokumenter",
-        "JUSS_LOGG": "/sti/til/juss-sok/soklogg.jsonl"
+        "JUSS_DOKUMENTMAPPE": "/sti/til/mcp-lovdata/eksempeldokumenter",
+        "JUSS_LOGG": "/sti/til/mcp-lovdata/soklogg.jsonl"
       }
     }
   }
